@@ -121,6 +121,10 @@
                             </tr>
                           </table>
                       </div>
+                      <footer>
+                        <button name="%(planet_mod_wizard_action)d" string="Crear" type="action" class="btn-primary">Modificar</button>
+                        <button name="delete_planet" string="Borrar" type="object" class="btn-danger">Eliminar</button>
+                    </footer>
                   </div>
                 </t>
               </templates>
@@ -128,12 +132,34 @@
         </field>
       </record> 
       
-      <record model="ir.actions.act_window" id="finalgalaxy.planet_add_wizard_action">
-        <field name="name">Add planet</field>
-        <field name="res_model">finalgalaxy.planet_add_wizard</field>
-        <field name="view_mode">form</field>
-        <field name="target">new</field>
-      </record>
+
+
+      <record model="ir.ui.view" id="finalgalaxy.planet_mod_wizard_form">
+            <field name="name">Mod planet</field>
+            <field name="model">finalgalaxy.planet_mod_wizard</field>
+            <field name="priority" eval="17"/>
+            <field name="arch" type="xml">
+              <form>
+                <sheet>
+                  <group>
+                    <field name="name"/>
+                    <field name="credit"/>
+                    <field name="metal"/>
+                    <field name="food"/>
+                    <field name="troops"/>
+                    <field name="ships"/>
+                    <field name="population_used"/>
+                    <field name="population_available"/>
+                  </group>
+                  <footer>
+                    <button name="save_changes" string="Modificar" type="object" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-default" special="cancel"/>
+                  </footer>
+                </sheet>
+              </form>
+            </field>
+        </record>
+ 
 
     </data>
 </odoo>

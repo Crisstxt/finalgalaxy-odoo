@@ -98,7 +98,10 @@ class planet(models.Model):
             else:
                 raise ValidationError("Recursos insuficientes o No tienes Espacio en el planeta")                          
         else:
-            raise ValidationError("No tienes Estacion espacial para crear Naves")   
+            raise ValidationError("No tienes Estacion espacial para crear Naves") 
+
+    def delete_planet(self):
+        self.unlink()
 
 class faction(models.Model):
     _name = 'finalgalaxy.faction'
@@ -156,10 +159,10 @@ class battle(models.Model):
     name = fields.Char(required=True)
     attack_player = fields.Many2one('res.partner', domain=[('is_player', '=', True)],required=True)
     attack_player_image = fields.Image(related='attack_player.image_1920')
-    attack_player_batalla_ganadas = fields.Integer()
+    attack_player_batalla_ganadas = fields.Integer(default=0)
     defense_player = fields.Many2one('res.partner', domain=[('is_player', '=', True)],required=True)
     defense_player_image = fields.Image(related='defense_player.image_1920')
-    defense_player_batalla_ganadas = fields.Integer()
+    defense_player_batalla_ganadas = fields.Integer(default=0)
     planet_attack = fields.Many2one('finalgalaxy.planet',required=True)
     planet_defense = fields.Many2one('finalgalaxy.planet',required=True)
     status = fields.Selection([('1','Preparacion'),('2','Finalizado')], default='1')
@@ -285,3 +288,35 @@ class planet_add_wizard(models.TransientModel):
             return{'type': 'ir.actions.act_window_close'}
         else:
             raise ValidationError("puntos insuficientes")
+
+class planet_mod_wizard(models.TransientModel):
+    _name = 'finalgalaxy.planet_mod_wizard'
+    _description = 'Modificar planeta'
+
+    def _get_planet(self):
+        return self.env['finalgalaxy.planet'].browse(self._context.get('active_id'))
+
+    planet = fields.Many2one('finalgalaxy.planet', default=_get_planet)
+    name = fields.Char(readonly=False)
+    credit = fields.Float(readonly=False)
+    metal = fields.Float(readonly=False)
+    food = fields.Float(readonly=False)
+    troops = fields.Integer(readonly=False)
+    ships = fields.Integer(readonly=False)
+    population_used = fields.Integer(readonly=False)
+    population_available = fields.Integer(readonly=False)
+        
+
+    def save_changes(self):
+        self.planet.write({
+            'name': self.name,
+            'credit': self.credit,
+            'metal': self.metal,
+            'food': self.food,
+            'troops': self.troops,
+            'ships': self.ships,
+            'population_used': self.population_used,
+            'population_available': self.population_available
+        })
+
+

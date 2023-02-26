@@ -25,12 +25,13 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'views/player.xml',
+        'views/views.xml',
+        'views/planet.xml',
+        'views/building.xml',
         'views/battle.xml',
         'views/faction.xml',
-        'views/planet.xml',
-        'views/player.xml',
         'views/templates.xml',
-        'views/views.xml',
         'views/cron.xml',
     ],
     # only loaded in demonstration mode

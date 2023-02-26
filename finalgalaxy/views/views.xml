@@ -18,7 +18,7 @@
     <record model="ir.actions.act_window" id="finalgalaxy.action_planet_window">
       <field name="name">Planetas:</field>
       <field name="res_model">finalgalaxy.planet</field>
-      <field name="view_mode">tree,form,kanban</field>
+      <field name="view_mode">kanban,tree,form</field>
     </record>
 
     <record model="ir.actions.act_window" id="finalgalaxy.action_faction_window">
@@ -30,7 +30,7 @@
     <record model="ir.actions.act_window" id="finalgalaxy.action_building_type_window">
       <field name="name">Tipos de Edificios:</field>
       <field name="res_model">finalgalaxy.building_type</field>
-      <field name="view_mode">tree,form,kanban</field>
+      <field name="view_mode">kanban,tree,form</field>
     </record>
 
     <record model="ir.actions.act_window" id="finalgalaxy.action_building_window">
@@ -44,6 +44,15 @@
       <field name="res_model">finalgalaxy.battle</field>
       <field name="view_mode">kanban,tree,form,calendar</field>
     </record>  
+
+    <record model="ir.actions.act_window" id="finalgalaxy.planet_mod_wizard_action">
+        <field name="name">Mod planet</field>
+        <field name="res_model">finalgalaxy.planet_mod_wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
 
     <!-- Top menu item -->
 

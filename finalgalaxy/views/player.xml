@@ -1,5 +1,12 @@
 <odoo>
     <data>
+
+      <record model="ir.actions.act_window" id="finalgalaxy.planet_add_wizard_action">
+        <field name="name">Add planet</field>
+        <field name="res_model">finalgalaxy.planet_add_wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+      </record>
   
       <record model="ir.ui.view" id="finalgalaxy.player_tree">
         <field name="name">Jugadores:</field>
