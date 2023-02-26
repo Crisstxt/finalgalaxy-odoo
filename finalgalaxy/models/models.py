@@ -169,7 +169,7 @@ class battle(models.Model):
     winner = fields.Many2one('res.partner')
     date = fields.Datetime(readonly=True, default=fields.Datetime.now)
 
-    @api.onchange('player1')
+    @api.onchange('attack_player')
     def onchange_player1(self):
         return {
             'domain': {
@@ -179,7 +179,7 @@ class battle(models.Model):
             }
         }
 
-    @api.onchange('player2')  
+    @api.onchange('defense_player')  
     def onchange_player2(self):
         return {
             'domain': {
@@ -319,4 +319,75 @@ class planet_mod_wizard(models.TransientModel):
             'population_available': self.population_available
         })
 
+class battle_create_wizard(models.TransientModel):
+    _name = 'finalgalaxy.battle_create_wizard'
+    _description = 'Crear una Batalla'   
 
+    def _get_player(self):
+        return self.env['res.partner'].browse(self._context.get('active_id'))
+
+    name = fields.Char(required=True)
+    attack_player = fields.Many2one('res.partner', default=_get_player)
+    attack_player_image = fields.Image(related='attack_player.image_1920')
+    attack_player_batalla_ganadas = fields.Integer(default=0)
+    defense_player = fields.Many2one('res.partner', domain=[('is_player', '=', True)])
+    defense_player_image = fields.Image(related='defense_player.image_1920')
+    defense_player_batalla_ganadas = fields.Integer(default=0)
+    planet_attack = fields.Many2one('finalgalaxy.planet',required=True)
+    planet_defense = fields.Many2one('finalgalaxy.planet')
+    status = fields.Selection([('1','Preparacion'),('2','Finalizado')], default='1')
+    winner = fields.Many2one('res.partner')
+    date = fields.Datetime(readonly=True, default=fields.Datetime.now)
+    state = fields.Selection([('1','attack player'),('2','defense player'),('3','battle')], default='1')
+
+    @api.onchange('attack_player')
+    def onchange_player1(self):
+        return {
+            'domain': {
+                'planet_attack': [('id', 'in', self.attack_player.planeta.ids)],
+                'defense_player': [('id', '!=', self.attack_player.id), ('is_player', '=', True)],
+                'defense_player.faction_player': [('id','!=', self.attack_player.faction_player.id)],
+            }
+        }
+
+    @api.onchange('defense_player')  
+    def onchange_player2(self):
+        return {
+            'domain': {
+                'planet_defense': [('id', 'in', self.defense_player.planeta.ids)],
+                'attack_player': [('id', '!=', self.defense_player.id), ('is_player', '=', True)],
+                'attack_player.faction_player': [('id','!=', self.defense_player.faction_player.id)],
+            }
+        } 
+
+    def action_previous(self):
+        if self.state == '2':
+            self.state = '1'
+        elif self.state == '3':
+            self.state = '2'
+        return{
+            'name': 'create battle',
+            'type': 'ir.actions.act_window',
+            'res_model': 'finalgalaxy.battle_create_wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'res_id': self.id
+        }
+    
+    def action_next(self):
+        if self.state == '1':
+            self.state = '2'
+        elif self.state == '2':
+            if not self.defense_player or not self.planet_defense:
+                 raise ValidationError("No has seleccionado al jugador defensivo o su planeta")
+            else:
+                self.state = '3'
+        return {
+            'name': 'create battle',
+            'type': 'ir.actions.act_window',
+            'res_model': 'finalgalaxy.battle_create_wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'res_id': self.id,
+            'context': dict(self._context, attack_player_context=self.attack_player.id)            
+        }

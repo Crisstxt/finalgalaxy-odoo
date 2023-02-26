@@ -7,6 +7,13 @@
         <field name="view_mode">form</field>
         <field name="target">new</field>
       </record>
+
+      <record model="ir.actions.act_window" id="finalgalaxy.battle_create_wizard_action">
+        <field name="name">Create battle</field>
+        <field name="res_model">finalgalaxy.battle_create_wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+      </record>
   
       <record model="ir.ui.view" id="finalgalaxy.player_tree">
         <field name="name">Jugadores:</field>
@@ -56,6 +63,7 @@
                 <page string="Batallas">
                   <group>
                     <field name="battle_history" mode="kanban" string="Historial de Batallas"/>
+                    <button name="%(battle_create_wizard_action)d" type="action" string="Crear batalla" class="oe_highlight"></button>
                   </group>
                 </page>
               </notebook>

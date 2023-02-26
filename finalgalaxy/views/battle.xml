@@ -37,8 +37,8 @@
             <field name="date"/>        
             </group>
         </sheet>
-        </form>
-    </field>
+      </form>
+      </field>
     </record>
 
 <record model="ir.ui.view" id="finalgalaxy.battle_kanban_view">
@@ -107,6 +107,44 @@
       </field>
     </record>
 
+  <record model="ir.ui.view" id="finalgalaxy.battle_create_wizard_form">
+            <field name="name">Create battle</field>
+            <field name="model">finalgalaxy.battle_create_wizard</field>
+            <field name="arch" type="xml">
+              <form>
+                    <header>
+                    <button name="action_previous" type="object"
+                                        string="Previous"
+                                        states="2,3"/>
+
+                    <button name="action_next" type="object"
+                                        string="Next" states="1,2"
+                                        class="oe_highlight"/>
+                    <field name="state" widget="statusbar" />
+                  </header>
+                <sheet>
+                  <group states='1'>
+                    <h1>Jugador atcante</h1>
+                    <field name="name"/>
+                    <field name="attack_player" readonly='1'/>
+                    <field name="attack_player_image" widget="image"/>
+                    <field name="planet_attack"/>
+                  </group>
+
+                  <group states='2'>
+                    <h1>Jugador Defensor</h1>
+                    <field name="defense_player"/>
+                    <field name="defense_player_image" widget="image"/>
+                    <field name="planet_defense"/>                  
+                  </group>
+
+                  <group states='3'>
+                    <h1>Batalla</h1>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+        </record>
 
     </data>
 </odoo>
