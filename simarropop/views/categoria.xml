@@ -1,0 +1,60 @@
+<odoo>
+    <data>
+      <!-- explicit list view definition -->
+  
+      <record model="ir.ui.view" id="simarropop.categoria_tree">
+        <field name="name">categorias:</field>
+        <field name="model">simarropop.categoria</field>
+        <field name="arch" type="xml">
+          <tree>
+            <field name="name"/>
+            <field name="icono" widget="image"/>
+          </tree>
+        </field>
+      </record>
+  
+      <record model="ir.ui.view" id="simarropop.categoria_form">
+        <field name="name">Categoria</field>
+        <field name="model">simarropop.categoria</field>
+        <field name="arch" type="xml">
+          <form>
+            <sheet>
+              <group>
+                <field name="name"/>
+                <field name="icono" widget="image"/>
+              </group>
+           </sheet>
+          </form>
+        </field>
+      </record> 
+  
+        <record model="ir.ui.view" id="simarropop.categoria_kanban_view">
+        <field name="name">Categorias:</field>
+        <field name="model">simarropop.categoria</field>
+        <field name="arch" type="xml">
+          <kanban>
+              <field name="name"/>
+              <field name="id"/>              
+              <field name="icono" widget="image"/>
+              <templates>
+                <t t-name="kanban-box">
+                  <div class="oe_categoira_vignette">
+                    <img class="oe_kanban_image" t-att-alt="record.name.value"
+                    t-att-src="kanban_image('simarropop.categoria', 'icono', record.id.value)" />
+                      <div class="oe_categoira_desc">
+                        <h4>
+                          <field name="name"/>
+                        </h4>
+                      </div>
+                  </div>
+                </t>
+              </templates>
+          </kanban>
+        </field>
+      </record> 
+    
+  
+  
+  
+    </data>
+  </odoo>

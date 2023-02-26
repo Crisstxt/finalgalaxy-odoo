@@ -1,0 +1,61 @@
+<odoo>
+    <data>
+
+    <record model="ir.ui.view" id="finalgalaxy.faction_tree">
+      <field name="name">Facciones:</field>
+      <field name="model">finalgalaxy.faction</field>
+      <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="description"/>
+            <field name="image" widget="image"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="finalgalaxy.faction_form">
+      <field name="name">Faccion:</field>
+      <field name="model">finalgalaxy.faction</field>
+      <field name="arch" type="xml">
+      <form>
+        <sheet>
+            <group>
+            <field name="name"/>
+            <field name="description"/>
+            <field name="image" widget="image"/>
+            </group>
+        </sheet>
+        </form>
+    </field>
+    </record>
+
+<record model="ir.ui.view" id="finalgalaxy.faction_kanban_view">
+        <field name="name">Facciones:</field>
+        <field name="model">finalgalaxy.faction</field>
+        <field name="arch" type="xml">
+          <kanban>     
+              <field name="name"/>
+              <field name="id"/>
+              <field name="image" widget="image"/>                      
+              <templates>
+                <t t-name="kanban-box">
+                  <div class="oe_articulo_vignette">
+                  <img class="oe_kanban_image" t-att-alt="record.name.value"
+                    t-att-src="kanban_image('finalgalaxy.faction', 'image', record.id.value)" />
+
+                      <div class="oe_articulo_desc">
+                        <h4>
+                          <a type="edit">
+                          <field name="name"/>
+                          </a>
+                        </h4>
+                      </div>
+                  </div>
+                </t>
+              </templates>
+          </kanban>
+        </field>
+      </record> 
+
+    </data>
+</odoo>

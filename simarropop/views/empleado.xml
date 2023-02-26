@@ -1,0 +1,41 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="simarropop.empleado_tree">
+      <field name="name">Empleados:</field>
+      <field name="model">simarropop.empleado</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="nombre"/>
+          <field name="dni"/>
+          <field name="email"/>
+          <field name="contra"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="simarropop.empleado_form">
+      <field name="name">Empleados: </field>
+      <field name="model">simarropop.empleado</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+                <field name="nombre"/>
+                <field name="dni"/>
+                <field name="email"/>
+                <field name="contra"/>
+            </group>
+         </sheet>
+        </form>
+      </field>
+    </record> 
+
+
+    <!-- actions opening views on models -->
+
+
+
+  </data>
+</odoo>

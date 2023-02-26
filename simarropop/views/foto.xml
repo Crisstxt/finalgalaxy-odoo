@@ -1,0 +1,34 @@
+<odoo>
+    <data>
+  
+      <record model="ir.ui.view" id="simarropop.foto_tree">
+        <field name="name">Foto:</field>
+        <field name="model">simarropop.foto</field>
+        <field name="arch" type="xml">
+          <tree>
+              <field name="fotoarticulo" widget="image"/>
+              <field name="fotourl"/>
+              <field name="imagen_articulo"/>
+          </tree>
+        </field>
+      </record>
+  
+      <record model="ir.ui.view" id="simarropop.foto_form">
+        <field name="name">Foto:</field>
+        <field name="model">simarropop.foto</field>
+        <field name="arch" type="xml">
+          <form>
+            <sheet>
+              <group>
+                  <field name="fotoarticulo" widget="image"/>
+                  <field name="fotourl"/>
+                  <field name="imagen_articulo"/>
+                  <button name="view_image" string="View Image" type="object"/>                
+              </group>
+           </sheet>
+          </form>
+        </field>
+      </record> 
+  
+    </data>
+  </odoo>

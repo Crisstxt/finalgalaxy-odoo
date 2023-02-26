@@ -1,0 +1,118 @@
+<odoo>
+    <data>
+
+          <record id="cat01" model="simarropop.categoria">
+            <field name="titulo">Deportes y Ocio</field>
+            <field name="icono"/>
+          </record>
+
+          <record id="cat02" model="simarropop.categoria">
+            <field name="titulo">Informatica y electronica</field>
+            <field name="icono"/>
+          </record>
+
+
+          <record id="cat03" model="simarropop.categoria">
+            <field name="titulo">Hogar y jardin</field>
+            <field name="icono"/>
+          </record>
+
+          <record id="cat04" model="simarropop.categoria">
+            <field name="titulo">Consola y videojuegos</field>
+            <field name="icono"/>
+          </record>
+
+          <record id="cat05" model="simarropop.categoria">
+            <field name="titulo">Coleccionismo</field>
+            <field name="icono"/>
+          </record>
+
+          <record id="cat06" model="simarropop.categoria">
+            <field name="titulo">Niños y bebes</field>
+            <field name="icono"/>
+          </record>
+
+          <record id="cat06" model="simarropop.categoria">
+            <field name="titulo">Modo y accesorios</field>
+            <field name="icono"/>
+          </record>
+
+          <record id="cat06" model="simarropop.categoria">
+            <field name="titulo">Vehiculos</field>
+            <field name="icono"/>
+          </record>
+
+          <record id="art01" model="simarropop.articulo">
+            <field name="titulo">Balón de Futbol del mundial 2010</field>
+            <field name="precio">100.00</field>
+            <field name="descripcion">Balón original del mundial 2010 sudafrica, en muy buenas condiciones</field>
+            <field name="imagen"/>
+            <field name ="articulo_categoria" ref="cat01"/>
+          </record>
+
+          <record id="art02" model="simarropop.articulo">
+            <field name="titulo">Raqueta de tenis</field>
+            <field name="precio">50.00</field>
+            <field name="descripcion">Raqueta de tenis como nueva utilizada muy pocas veces</field>
+            <field name="imagen"/>
+            <field name ="articulo_categoria" ref="cat01"/>
+          </record>
+
+          <record id="art03" model="simarropop.articulo">
+            <field name="titulo">Monitor para pc 22''</field>
+            <field name="precio">90.00</field>
+            <field name="descripcion">Monitor de ordenador de 22'' de 60 hz con poco uso</field>
+            <field name="imagen"/>
+            <field name ="articulo_categoria" ref="cat02"/>
+          </record>
+
+         <record id="art04" model="simarropop.articulo">
+            <field name="titulo"> Zapatillas para correr </field> 
+            <field name="precio">30.00</field>
+            <field name="descripcion">Zapatillas Nike sin usar, talla 42</field>
+            <field name="imagen"/>
+            <field name ="articulo_categoria" ref="cat01"/>
+          </record>
+
+         <record id="art05" model="simarropop.articulo">
+            <field name="titulo"> Pantalones deportivos </field> 
+            <field name="precio">30.00</field>
+            <field name="descripcion">Pantalones deportivos ideales para hacer deporte </field>
+            <field name="imagen"/>
+            <field name ="articulo_categoria" ref="cat01"/>
+          </record>
+
+          <record id="art05" model="simarropop.articulo">
+            <field name="titulo"> Pantalones deportivos </field> 
+            <field name="precio">30.00</field>
+            <field name="descripcion">Pantalones deportivos ideales para hacer deporte </field>
+            <field name="imagen"/>
+            <field name ="articulo_categoria" ref="cat01"/>
+          </record>
+
+          <record id="art06" model="simarropop.articulo">
+            <field name="titulo">fiat 500</field>
+            <field name="precio">14000</field>
+            <field name="descripcion">coche Fiat 500, poco uso 1200 km</field>
+            <field name="imagen"/>
+            <field name="articulo_categoria" ref="cat05"/>
+          </record>
+
+          <record id="art07" model="simarropop.articulo">
+            <field name="titulo">bañera para bebés</field>
+            <field name="precio">60.00</field>
+            <field name="descripcion">bañera para bebes hasta los 2 años, usada pero en perfectas condiciones</field>
+            <field name="imagen"/>
+            <field name="articulo_categoria" ref="cat06"/>
+          </record>
+
+          <record id="art08" model="simarropop.articulo">
+            <field name="titulo">maseta con textura </field>
+            <field name="precio">20.00</field>
+            <field name="descripcion">maseta con dibujo de Rosas con relieve, muy bonita la verdad</field>
+            <field name="imagen"/>
+            <field name="articulo_categoria" ref="cat03"/>
+          </record>
+          
+    </data>
+</odoo>

@@ -1,0 +1,75 @@
+<odoo>
+  <data>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="finalgalaxy.action_player_window">
+      <field name="name">Jugadores:</field>
+      <field name="res_model">res.partner</field>
+      <field name="view_mode">tree,form,kanban</field>
+      <field name="domain"></field>
+      <field name="search_view_id" ref="finalgalaxy.player_search"></field>
+      <field name="context">{'search_default_player_partner': 1, 'default_is_player': True, }</field>
+      <field name="view_ids" eval="[(5, 0, 0),
+      (0, 0, {'view_mode': 'tree', 'view_id': ref('finalgalaxy.player_tree')}),
+      (0, 0, {'view_mode': 'form', 'view_id': ref('finalgalaxy.player_form')}),]" />      
+    </record>
+
+    <record model="ir.actions.act_window" id="finalgalaxy.action_planet_window">
+      <field name="name">Planetas:</field>
+      <field name="res_model">finalgalaxy.planet</field>
+      <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="finalgalaxy.action_faction_window">
+      <field name="name">Facciones:</field>
+      <field name="res_model">finalgalaxy.faction</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="finalgalaxy.action_building_type_window">
+      <field name="name">Tipos de Edificios:</field>
+      <field name="res_model">finalgalaxy.building_type</field>
+      <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="finalgalaxy.action_building_window">
+      <field name="name">Edificios:</field>
+      <field name="res_model">finalgalaxy.building</field>
+      <field name="view_mode">tree,form,kanban</field>
+    </record>
+  
+    <record model="ir.actions.act_window" id="finalgalaxy.action_battle_window">
+      <field name="name">Batallas:</field>
+      <field name="res_model">finalgalaxy.battle</field>
+      <field name="view_mode">kanban,tree,form,calendar</field>
+    </record>  
+
+    <!-- Top menu item -->
+
+    <menuitem name="finalgalaxy" id="finalgalaxy.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Jugadores" id="finalgalaxy.menu_1" parent="finalgalaxy.menu_root"/>
+    <menuitem name="Planetas" id="finalgalaxy.menu_2" parent="finalgalaxy.menu_root"/>
+    <menuitem name="Edificios" id="finalgalaxy.menu_3" parent="finalgalaxy.menu_root"/>
+    <menuitem name="Batallas" id="finalgalaxy.menu_4" parent="finalgalaxy.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="Jugadores" id="finalgalaxy.menu_1_list" parent="finalgalaxy.menu_1"
+              action="finalgalaxy.action_player_window"/>
+    <menuitem name="Planetas" id="finalgalaxy.menu_2_list" parent="finalgalaxy.menu_2"
+              action="finalgalaxy.action_planet_window"/>
+    <menuitem name="Facciones" id="finalgalaxy.menu_3_list" parent="finalgalaxy.menu_1"
+              action="finalgalaxy.action_faction_window"/>
+    <menuitem name="Edificios" id="finalgalaxy.menu_4_list" parent="finalgalaxy.menu_3"
+              action="finalgalaxy.action_building_window"/>
+    <menuitem name="Tipo de Edificios" id="finalgalaxy.menu_5_list" parent="finalgalaxy.menu_3"
+              action="finalgalaxy.action_building_type_window"/>                            
+    <menuitem name="Batallas" id="finalgalaxy.menu_6_list" parent="finalgalaxy.menu_4"
+              action="finalgalaxy.action_battle_window"/>           
+
+  </data>
+</odoo>

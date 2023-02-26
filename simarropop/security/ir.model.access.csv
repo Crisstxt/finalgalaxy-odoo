@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_simarropop_articulo,simarropop.articulo,model_simarropop_articulo,base.group_user,1,1,1,1
+access_simarropop_categoria,simarropop.categoria,model_simarropop_categoria,base.group_user,1,1,1,1
+access_simarropop_foto,simarropop.foto,model_simarropop_foto,base.group_user,1,1,1,1
+access_simarropop_valoracion,simarropop.valoracion,model_simarropop_valoracion,base.group_user,1,1,1,1
+access_simarropop_empleado,simarropop.empleado,model_simarropop_empleado,base.group_user,1,1,1,1
+access_simarropop_usuario_wizard,simarropop.usuario_wizard,model_simarropop_usuario_wizard,base.group_user,1,1,1,1

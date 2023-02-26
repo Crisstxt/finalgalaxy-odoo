@@ -1,0 +1,75 @@
+<odoo>
+    <data>
+      
+    <record model="ir.ui.view" id="simarropop.venta_partner_list">
+      <field name="name">simarropop venta partner </field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <notebook position="inside">
+          <page string = "Ventas Simarropop">
+            <group>
+               <header>
+          <field name="name" style="background:LIGHTBLUE"  />
+         
+          <field name="name"/>    
+         </header>  
+          <sheet>
+            <group>
+               <field name="cliente"/>
+               <field name="articulo"/>
+
+            <kanban>
+             <field name="cliente"/>
+             <field name="articulo"/>
+
+                  <templates>
+                      <t t-name="kanban-box">
+
+                              <div class="oe_kanban_details d-flex flex-column">
+                                  <ul>
+                                    <li>Cliente: <field name="cliente"/></li>
+                                    <li>Articulo: <field name="articulo"/></li>
+                                  </ul>
+                              </div>
+                      </t>
+                  </templates>
+               </kanban>
+
+            </group>
+         </sheet>
+            </group>
+          </page>
+        </notebook> 
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="simarropop.venta_tree">
+      <field name="name">ventas</field>
+      <field name="model">sale.order</field>
+      <field name="arch" type="xml">
+        <tree>
+            <field name="cliente"/>
+            <field name="articulo"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="simarropop.venta_form">
+      <field name="name">ventas</field>
+      <field name="model">sale.order</field>
+      <field name="arch" type="xml">
+      <form>
+        <sheet>
+            <group>
+                <field name="cliente"/>
+                <field name="articulo"/>
+            </group>
+        </sheet>
+        </form>
+    </field>
+    </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+  
+      <record model="ir.ui.view" id="simarropop.valoracion_tree">
+        <field name="name">valoracion:</field>
+        <field name="model">simarropop.valoracion</field>
+        <field name="arch" type="xml">
+          <tree>
+            <field name="name"/>
+            <field name="descripcion"/>
+            <field name="estrellas"/>
+            <field name="num_estrellas"/>
+            <field name="valoracion_usuario"/>
+          </tree>
+        </field>
+      </record>
+  
+      <record model="ir.ui.view" id="simarropop.valoracion_form">
+        <field name="name">valoracion:</field>
+        <field name="model">simarropop.valoracion</field>
+        <field name="arch" type="xml">
+          <form>
+            <sheet>
+              <group>
+              <field name="name"/>
+            <field name="descripcion"/>
+            <field name="estrellas"/>
+            <field name="valoracion_usuario"/>
+              </group>
+           </sheet>
+          </form>
+        </field>
+      </record> 
+  
+  
+    </data>
+  </odoo>

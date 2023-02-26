@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_finalgalaxy_planet,finalgalaxy.planet,model_finalgalaxy_planet,base.group_user,1,1,1,1
+access_finalgalaxy_faction,finalgalaxy.faction,model_finalgalaxy_faction,base.group_user,1,1,1,1
+access_finalgalaxy_planet_add_wizard,finalgalaxy.planet_add_wizard,model_finalgalaxy_planet_add_wizard,base.group_user,1,1,1,1
+access_finalgalaxy_building,finalgalaxy.building,model_finalgalaxy_building,base.group_user,1,1,1,1
+access_finalgalaxy_building_type,finalgalaxy.building_type,model_finalgalaxy_building_type,base.group_user,1,1,1,1
+access_finalgalaxy_battle,finalgalaxy.battle,model_finalgalaxy_battle,base.group_user,1,1,1,1

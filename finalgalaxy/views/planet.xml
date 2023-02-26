@@ -1,0 +1,139 @@
+<odoo>
+    <data>
+
+    <record model="ir.ui.view" id="finalgalaxy.planet_tree">
+      <field name="name">Planetas:</field>
+      <field name="model">finalgalaxy.planet</field>
+      <field name="arch" type="xml">
+        <tree>
+            <field name="player"/>
+            <field name="name"/>
+            <field name="credit"/>
+            <field name="metal"/>
+            <field name="food"/>
+            <field name="troops"/>
+            <field name="ships"/>
+            <field name="population_used"/>
+            <field name="population_available"/>
+            <field name="faction"/>          
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="finalgalaxy.planet_form">
+      <field name="name">Planeta:</field>
+      <field name="model">finalgalaxy.planet</field>
+      <field name="arch" type="xml">
+      <form>
+        <sheet>
+            <group>
+            <field name="player"/>
+            <field name="name"/>
+            <field name="credit"/>
+            <field name="metal"/>
+            <field name="food"/>
+            <field name="troops"/>
+            <field name="ships"/>
+            <field name="population_used"/>
+            <field name="population_available"/>
+            <field name="faction"/>
+            <button name="create_troop" type="object" class="btn-primary" >Comprar Tropas</button>
+            <p> comida = 30, creditos = 25, poblacion = 2</p>  
+            <button name="create_ship" type="object" class="btn-primary" >Comprar Naves</button>
+            <p> comida = 45, creditos = 10, metal = 25, poblacion = 3</p>      
+            </group>
+            
+            <notebook>
+              <page string="Edificios">
+              <group>
+                <field name="building_planet" mode="tree"/>
+                <field name="building_available" mode="kanban">
+                  <kanban>
+                    <field name="id"/>
+                    <field name="image"/>
+                    <field name="name"/>
+                      <templates>
+                          <t t-name="kanban-box">
+                              <div t-attf-class="oe_kanban_card o_kanban_record_has_image_fill ">
+                                <div class="o_kanban_image_fill_left o_kanban_image_full d-none d-md-block"
+                                t-attf-style="background-image:url('#{kanban_image('finalgalaxy.building_type',
+                                'image', record.id.value, placeholder)}')">
+                                </div>
+                                  <div class="oe_kanban_details d-flex flex-column">
+                                    <a type="open">
+                                      <h4 class="o_kanban_record_title oe_partner_heading"><field name="name"/></h4></a>
+                                        <ul>
+                                          <li>Creditos: <field name="credit"/></li>
+                                          <li>Comida: <field name="food"/></li>
+                                          <li>Metal: <field name="metal"/></li>
+                                        </ul>
+                                  </div>
+                                  <div class="oe_kanban_details d-flex flex-column">
+                                    <button name="build"
+                                            type="object"
+                                            string="Build"
+                                            class="btn btn-primary"
+                                            context="{'ctx_planet':parent.id}"
+                                    >Construir</button>
+                                  </div>
+                              </div>
+                          </t>
+                      </templates>
+                    </kanban>
+                </field>
+              </group> 
+              </page>
+              <page string="Batallas">
+              </page>
+            </notebook>
+        </sheet>
+        </form>
+    </field>
+    </record>
+
+<record model="ir.ui.view" id="finalgalaxy.planet_kanban_view">
+        <field name="name">Planetas:</field>
+        <field name="model">finalgalaxy.planet</field>
+        <field name="arch" type="xml">
+          <kanban>     
+              <field name="name"/>
+              <field name="id"/>
+              <field name="player_image" widget="image"/>
+              <field name="faction" readonly="1"/>                         
+              <templates>
+                <t t-name="kanban-box">
+                  <div class="oe_planet_vignette">
+                    <img class="oe_kanban_image" t-att-alt="record.name.value"
+                      t-att-src="kanban_image('finalgalaxy.planet', 'player_image', record.id.value)" />
+                      <div class="oe_planet_desc">
+                          <table>
+                            <tr>
+                              <th>
+                                <a type="edit">
+                                  <field name="name"/>
+                                </a>
+                              </th>
+                            </tr>
+                            <tr>
+                              <td>
+                                <field name="faction"/>
+                              </td>
+                            </tr>
+                          </table>
+                      </div>
+                  </div>
+                </t>
+              </templates>
+          </kanban>
+        </field>
+      </record> 
+      
+      <record model="ir.actions.act_window" id="finalgalaxy.planet_add_wizard_action">
+        <field name="name">Add planet</field>
+        <field name="res_model">finalgalaxy.planet_add_wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+      </record>
+
+    </data>
+</odoo>

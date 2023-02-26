@@ -1,0 +1,127 @@
+<odoo>
+    <data>
+
+    <record model="ir.ui.view" id="simarropop.articulo_tree">
+      <field name="name">articulos</field>
+      <field name="model">simarropop.articulo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="precio"/>
+          <field name="descripcion"/>
+          <field name="articulo_categoria"/>
+          <field name="tiempo_horas"/>
+          <field name="imagen_articulo" widget="image"/>
+          <field name="user"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="simarropop.articulo_form">
+      <field name="name">articulos</field>
+      <field name="model">simarropop.articulo</field>
+      <field name="arch" type="xml">
+      <form>
+        <sheet>
+            <group>
+                <field name="name"/>
+                <field name="precio"/>
+                <field name="descripcion"/>
+                <field name="imagen"/>
+                <field name="imagen_articulo" widget="image"/>                
+                <field name="articulo_categoria"/>
+                <field name="tiempo_horas"/>
+                <field name="fecha"/>
+                <field name="user"/>
+            </group>
+        </sheet>
+        </form>
+    </field>
+    </record>
+<!--Kanban Section-->
+<record model="ir.ui.view" id="simarropop.artiuclo_kanban_view">
+        <field name="name">Articulos:</field>
+        <field name="model">simarropop.articulo</field>
+        <field name="arch" type="xml">
+          <kanban>     
+              <field name="name"/>
+              <field name="id"/>
+              <field name="imagen_articulo" widget="image"/>
+              <field name="precio"/>                         
+              <templates>
+                <t t-name="kanban-box">
+                  <div class="oe_articulo_vignette">
+                  <img class="oe_kanban_image" t-att-alt="record.name.value"
+                    t-att-src="kanban_image('simarropop.articulo', 'imagen_articulo', record.id.value)" />
+
+                      <div class="oe_articulo_desc">
+                        <h4>
+                          <a type="edit">
+                          <field name="name"/>
+                          </a>
+                          <field name="precio"/>
+                        </h4>
+                      <table>
+                        <tr> 
+                          <th>
+                            Acciones:
+                          </th>
+                        </tr>
+                        <tr>
+                          <td>
+                          <button name="%(simarropop.articulo_mod_wizard_window)d" type="action" class="oe_highlight" >Modificar</button>
+                          <button name="delete_articulo" string="Eliminar" type="object" class="btn-danger">Eliminar</button>
+                          </td>
+                        </tr>
+                      </table>
+                      </div>
+                  </div>
+                </t>
+              </templates>
+          </kanban>
+        </field>
+      </record> 
+
+
+<!--Calendar Section-->
+    <record model="ir.ui.view" id="simarropop.articulo_calendar">
+      <field name="name">articulos list</field>
+      <field name="model">simarropop.articulo</field>
+      <field name="arch" type="xml">
+        <calendar string="Articulo Calendar"
+                  date_start="fecha">
+          <field name="name"/>
+          <field name="imagen_articulo" widget="image"/>   
+          <field name="user"/>
+        </calendar>
+      </field>
+    </record>
+
+
+
+<!-- Wizard Section -->
+
+    <record model="ir.ui.view" id="simarropop.articulo_mod_wizard_form">
+      <field name="name">Modificar articulo</field>
+      <field name="model">simarropop.articulo_mod_wizard</field>
+      <field name="arch" type="xml">
+      <form>
+        <sheet>
+            <group>
+                <field name="name"/>
+                <field name="precio"/>
+                <field name="descripcion"/>
+                <field name="imagen"/>           
+                <field name="articulo_categoria"/>
+            </group>
+            <footer>
+                <button name="save_changes" string="Guardar" type="object" class="btn-primary"/>
+                <button string="Cancelar" class="btn-default" special="cancel"/>
+            </footer>
+        </sheet>
+        </form>
+    </field>
+    </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,87 @@
+<odoo>
+    <data>
+      <!-- explicit list view definition -->
+  
+      <record model="ir.ui.view" id="simarropop.usuario_tree">
+        <field name="name">Usuarios:</field>
+        <field name="model">res.partner</field>        
+        <field name="arch" type="xml">
+          <tree>
+            <field name="name"/>
+            <field name="email"/>
+            <field name="contrasenya"/>
+            <field name="monedero"/>
+            <field name="state_id"/>
+            <field name="country_id"/>
+            <field name="city"/>
+            <field name="media_valoracion"/>
+            <field name="is_user"/>            
+          </tree>
+        </field>
+      </record>
+      
+      <record model="ir.ui.view" id="simarropop.usuario_form">
+        <field name="name">Usuarios:</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+          <form>
+            <sheet>
+              <group>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="contrasenya"/>
+                <field name="monedero"/>
+                <field name="image_1920" widget="image"/>
+                <field name="media_valoracion"/>
+                <field name="is_user"/>
+                <field name="country_id"/>
+                <field name="state_id"/> 
+                <field name="city"/>
+              </group>
+              
+              <notebook>
+                <page string="Articulos">
+                  <group>
+                    <field name="usuario_articulo" mode="kanban"/>
+                  </group>
+                </page>
+                <page string="Articulos Favoritos">
+                  <group>
+                    <field name="usuario_favortios" mode="kanban"/>
+                  </group>
+                </page>
+                <page string="Valoraciones">
+                  <group>
+                    <field name="usuario_valoracion" mode="tree"/>
+                    <field name="media_valoracion"/>
+                  </group>
+                </page>
+              </notebook>
+           </sheet>
+          </form>
+        </field>
+      </record> 
+     
+     <record model="ir.ui.view" id="simarropop.usuario_wizard_form">
+        <field name="name">simarropop usuario wizard</field>
+        <field name="model">simarropop.usuario_wizard</field>
+        <field name="arch" type="xml">
+          <form>
+            <group>
+                <field name="name"/>
+                <field name="quantity_articles"/>
+            </group>
+          </form>
+        </field>
+      </record>
+  
+       <record id="simarropop.usuario_wizard_action" model="ir.actions.act_window">
+            <field name="name">Numero Productos</field>
+            <field name="res_model">simarropop.usuario_wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="base.model_res_partner"/>
+        </record>
+    </data>
+  </odoo>
