@@ -27,27 +27,28 @@
           <form>
             <sheet>
               <group>
-                <field name="name"/>
+                <field name="name" string="Nombre"/>
                 <field name="email"/>
-                <field name="password"/>
-                <field name="level"/>
-                <field name="exp"/>
-                <field name="battle_points"/>
-                <field name="faction_player"/>  
-                <field name="image_1920" widget="image" options='{"size": [250, 250]}'/>
-                <field name="is_player"/>      
+                <field name="password" string="Contraseña"/>
+                <field name="level" string="Nivel"/>
+                <field name="exp" string="Experiencia"/>
+                <field name="battle_points" string="Puntos de Batalla"/>
+                <field name="faction_player" string="Faccion"/>  
+                <field name="image_1920" widget="image" options='{"size": [250, 250]}' string="Perfil"/>
+                <field name="is_player" string="Jugador"/>      
               </group>
               
               <notebook>
                 <page string="Planetas">
                   <group>
-                    <field name="planeta" mode="kanban"/>
+                    <field name="planeta" mode="kanban" string="Planetas"/>
                     <field name="planeta_contador" readonly="1"/>
                     <button name="%(planet_add_wizard_action)d" type="action" string="Crear planeta" class="oe_highlight"></button>
                   </group>
                 </page>
                 <page string="Batallas">
                   <group>
+                    <field name="battle_history" mode="kanban" string="Historial de Batallas"/>
                   </group>
                 </page>
               </notebook>

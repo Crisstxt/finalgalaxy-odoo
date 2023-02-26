@@ -18,6 +18,7 @@ class player(models.Model):
     planeta_contador = fields.Integer(compute='_get_total_planets')
     faction_player = fields.Many2one('finalgalaxy.faction')
     battle_points = fields.Integer(default=1000)
+    battle_history = fields.Many2many('finalgalaxy.battle', compute="_get_battles")
     is_player = fields.Boolean(default=False) 
 
     @api.onchange('level','exp')
@@ -35,6 +36,9 @@ class player(models.Model):
     def _level_check(self):
         if self.exp < 0 or self.level < 0:
             raise ValidationError("El nivel o el experiencia no puede ser menor que 0")
+
+    def _get_battles(self):
+        self.battle_history = self.env['finalgalaxy.battle'].search([('status', '=', 2), '|', ('attack_player', '=', self.id), ('defense_player', '=', self.id)])
 
    
 class planet(models.Model):
@@ -186,6 +190,7 @@ class battle(models.Model):
         for b in self:
             b.search([]).battle_space()
             b.search([]).battle_ground()
+       
 
             if b.attack_player_batalla_ganadas > b.defense_player_batalla_ganadas:
                 b.attack_player.exp += 10
@@ -194,7 +199,6 @@ class battle(models.Model):
                 b.defense_player.battle_points += 1
                 b.planet_defense.troops -= b.planet_defense.troops
                 b.planet_defense.ships -= b.planet_defense.ships
-
                 b.winner = b.attack_player.id
             else:
 
@@ -202,8 +206,8 @@ class battle(models.Model):
                 b.attack_player.battle_points += 1
                 b.defense_player.exp += 10
                 b.defense_player.battle_points += 5
-                b.attack_player.troops -= b.attack_player.troops
-                b.attack_player.ships -= b.attack_player.ships
+                b.planet_attack.troops -= b.planet_attack.troops
+                b.planet_attack.ships -= b.planet_attack.ships
                 b.winner = b.defense_player.id
 
             if b.attack_player_batalla_ganadas == b.defense_player_batalla_ganadas:            
@@ -221,9 +225,12 @@ class battle(models.Model):
                     b.attack_player.battle_points += 1
                     b.defense_player.exp += 10
                     b.defense_player.battle_points += 5
-                    b.attack_player.troops -= b.attack_player.troops
-                    b.attack_player.ships -= b.attack_player.ships
-                    b.winner = b.defense_player.id    
+                    b.planet_attack.troops -= b.planet_attack.troops
+                    b.planet_attack.ships -= b.planet_attack.ships
+                    b.winner = b.defense_player.id 
+            
+        b.status = '2'
+              
 
 
     def battle_ground(self):

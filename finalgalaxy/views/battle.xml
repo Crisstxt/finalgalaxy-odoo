@@ -85,7 +85,7 @@
                         <p>Ganador: <field name="winner"/></p>
                         <p><strong>Estado:</strong> <field name="status" readonly="1"/></p>
                         <p><strong>Fecha:</strong> <field name="date"/></p>
-                        <button name="start_battle" type="object" class="btn-primary" >Start Battle</button> 
+                        <button name="start_battle" type="object" class="btn-primary" attrs="{'invisible': [('status', '=', '2')]}">Start Battle</button> 
                     </footer>
                 </div>
                 </t>
