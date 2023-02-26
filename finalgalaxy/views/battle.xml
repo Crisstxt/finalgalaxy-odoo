@@ -133,15 +133,22 @@
 
                   <group states='2'>
                     <h1>Jugador Defensor</h1>
-                    <field name="defense_player"/>
+                    <field name="defense_player"  domain = "[('id','!=',context.get('attack_player_context',[])),('is_player','=',True)]"/>
                     <field name="defense_player_image" widget="image"/>
                     <field name="planet_defense"/>                  
                   </group>
 
                   <group states='3'>
                     <h1>Batalla</h1>
+                      <field name="attack_player_info" mode="kanban"/>
+                    <h1>V/S</h1>
+                     <field name="defense_player_info" mode="kanban"/>
                   </group>
                 </sheet>
+                  <footer>
+                    <button states='3' name="create_battle" string="Crear" type="object" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-default" special="cancel"/>
+                  </footer>
               </form>
             </field>
         </record>

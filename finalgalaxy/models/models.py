@@ -328,9 +328,11 @@ class battle_create_wizard(models.TransientModel):
 
     name = fields.Char(required=True)
     attack_player = fields.Many2one('res.partner', default=_get_player)
+    attack_player_info = fields.Many2one('res.partner', related="attack_player")
     attack_player_image = fields.Image(related='attack_player.image_1920')
     attack_player_batalla_ganadas = fields.Integer(default=0)
     defense_player = fields.Many2one('res.partner', domain=[('is_player', '=', True)])
+    defense_player_info = fields.Many2one('res.partner', related="defense_player")
     defense_player_image = fields.Image(related='defense_player.image_1920')
     defense_player_batalla_ganadas = fields.Integer(default=0)
     planet_attack = fields.Many2one('finalgalaxy.planet',required=True)
@@ -391,3 +393,12 @@ class battle_create_wizard(models.TransientModel):
             'res_id': self.id,
             'context': dict(self._context, attack_player_context=self.attack_player.id)            
         }
+
+    def create_battle(self):
+        self.env['finalgalaxy.battle'].create({
+            'name': self.name,
+            'attack_player': self.attack_player.id,
+            'defense_player': self.defense_player.id,
+            'planet_attack': self.planet_attack.id,
+            'planet_defense': self.planet_defense.id,           
+        })
